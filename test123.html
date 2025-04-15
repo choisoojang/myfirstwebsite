@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Pages 배포 가이드</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Gowun Dodum', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f4ff, #e0ecff);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #1d3557;
+    }
+    .step-img {
+      width: 100%;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+    }
+    .step-img {
+      width: 100%;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>깃 허브(GitHub Pages) 활용한 배포 가이드</h1>
+    <p>GitHub로 나만의 웹사이트를 배포해보세요!</p>
+
+    <h2>1. 준비물</h2>
+    <ul type="square">
+      <li>GitHub 계정</li>
+      <li>HTML, CSS, JS 파일이 있는 저장소</li>
+    </ul>
+    <h3>  1-1. 회원가입하기 </h3>
+    <ul>
+      <li><a href="https://github.com/" target="_blank">https://github.com/</a></li>
+      <li>위의 링크에 들어가서 "Sign in" 클릭</li>
+    </ul>
+    <h3>  1-2. 저장소에 웹 사이트 파일 넣기 </h3>
+    <ul>
+      <li>Top repositories 옆에 있는 <strong>New</strong> 버튼 클릭</li>
+      <img src="image1.png" alt="저장소 생성 위치" class="step-img">
+      <li>저장소 이름을 입력하고 저장소 만들기</li>
+      <img src="image2.png" alt="저장소 생성 화면" class="step-img">
+      <li>저장소에 우리가 만든 웹 페이지 업로드하기</li>
+      <img src="image3.png" alt="저장소 생성 화면" class="step-img">
+      <img src="image4.png" alt="저장소 생성 화면" class="step-img">
+
+    </ul>
+    <h2>2. 설정 방법</h2>
+    <ol>
+      <li>저장소에 들어가서 <strong>Settings</strong> 클릭</li>
+      <li>좌측 메뉴에서 <strong>Pages</strong> 선택</li>
+      <li><strong>Branch</strong>는 <code>main</code>, <code>/(root)</code>로 설정</li>
+      <li><strong>Save</strong> 클릭 후 몇 초 기다리기</li>
+    </ol>
+
+    <h2>🔗 나의 배포 주소 확인</h2>
+    <input type="text" id="username" placeholder="깃허브 아이디 입력" />
+    <input type="text" id="reponame" placeholder="저장소 이름 입력" />
+    <button onclick="showURL()">배포 주소 확인하기</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function showURL() {
+      const user = document.getElementById("username").value.trim();
+      const repo = document.getElementById("reponame").value.trim();
+      const result = document.getElementById("result");
+
+      if (user && repo) {
+        const url = `https://${user}.github.io/${repo}/`;
+        result.innerHTML = `✅ <a href="${url}" target="_blank">${url}</a>`;
+      } else {
+        result.textContent = "아이디와 저장소 이름을 입력해주세요.";
+      }
+    }
+  </script>
+</body>
+</html>
